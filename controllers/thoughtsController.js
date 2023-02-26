@@ -1,17 +1,16 @@
 const { Thought, User } = require('../models');
 
 module.exports = {
-  // Get all thoughts;
+  // Get all thoughts; WORKS
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
 
-  // Get a single thought
+  // Get a single thought; WORK
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
-      .select('-__v')
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
@@ -19,7 +18,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new thought; WORKS
+  // create a new thought;
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -42,7 +41,7 @@ module.exports = {
       });
   },
 
-  // Update a thought
+  // Update a thought; WORKS
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -60,7 +59,7 @@ module.exports = {
       });
   },
 
-  // Delete a thought and associated reactions
+  // Delete a thought and associated reactions; looks like it doesn't work but when DB is refreshed it works. 
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -72,7 +71,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // Add a reaction response
+  // Add a reaction; WORKS
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -87,11 +86,11 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // Remove thought reaction
+  // Remove thought reaction; WORKS
   removeReaction(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.params.thoughtID },
-      { $pull: { reactions: { thoughtId: req.params.thoughtId } } },
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionID: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
       .then((thought) =>

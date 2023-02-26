@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const format_date = require('../utils/helpers');
+const {format_date} = require('../utils/helpers');
 const Reaction = require('./Reaction');
 
 const thoughtSchema = new Schema(
@@ -23,7 +23,6 @@ const thoughtSchema = new Schema(
     {
         toJSON: {
           virtuals: true,
-          getters: true,
         },
         id: false,
     }
