@@ -18,7 +18,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new thought;
+  // create a new thought; WORKS
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -65,9 +65,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : Reaction.deleteMany({ _id: { $in: thought.reactions } })
-      )
-      .then(() => res.json({ message: 'Thought and associated reactions deleted!' }))
+          : res.json({ message: 'Thought and associated reactions deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
 
