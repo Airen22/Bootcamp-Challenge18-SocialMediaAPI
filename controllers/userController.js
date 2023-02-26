@@ -43,7 +43,7 @@ module.exports = {
             });
         },
     
-    // Delete a user and associated thoughts
+    // Delete a user and associated thoughts; WORKS
     deleteUser(req, res) {
       User.findOneAndDelete({ _id: req.params.userId })
         .then((user) =>
@@ -70,7 +70,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
   
-    // Remove friend
+    // Remove friend; WORKS
     removeFriend(req, res) {
         User.findOneAndUpdate(
         { _id: req.params.userId },
@@ -80,7 +80,7 @@ module.exports = {
         .then((user) =>
             !user
             ? res.status(404).json({ message: 'No user with this id!' })
-            : res.json(video)
+            : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
     },
