@@ -61,13 +61,24 @@ module.exports = {
 
   // Delete a thought and associated reactions; looks like it doesn't work but when DB is refreshed it works. 
   deleteThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : res.json({ message: 'Thought and associated reactions deleted!' }))
-      .catch((err) => res.status(500).json(err));
-  },
+          : User.findOneAndUpdate(
+            { thoughts: req.params.thoughtId },
+            { $pull: { thoughts: req.params.thoughtId } },
+            {new: true })
+            )
+            .then((user) =>
+            !user
+              ? res.status(404).json({
+                  message: 'Thought deleted but no user with this id!',
+                })
+              : res.json({ message: 'Thought successfully deleted!' })
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 
   // Add a reaction; WORKS
   addReaction(req, res) {
