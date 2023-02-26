@@ -11,25 +11,25 @@ const {
 
 // /api/Thoughts
 router
-.route('/')
-.get(getThoughts)
-.post(createThought);
+  .route('/')
+  .get(getThoughts)
+  .post(createThought);
 
 // /api/Thoughts/:ThoughtId
 router
-.route('/:thoughtId')
-.get(getSingleThought)
-.post(updateThought)
-.delete(deleteThought);
+  .route('/:thoughtId')
+  .get(getSingleThought)
+  .post(updateThought)
+  .delete(deleteThought);
 
 // /api/Thoughts/:ThoughtId/Reactions
 router
-.route('/:thoughtId/reactions')
-.post(addReaction);
+  .route('/:thoughtId/reactions')
+  .post(addReaction);
 
 // /api/Thoughts/:ThoughtId/reactions/:reactionId
 router
-.route('/:thoughtId/reactions/:reactionId')
-.delete(removeReaction);
+  .route('/:thoughtId/reactions/:reactionId')
+  .delete(removeReaction);
 
 module.exports = router;
