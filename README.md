@@ -6,9 +6,7 @@ UTA coding bootcamp challenge 18 - social media API
 This is the backend code for a social media app that defines the routes to create, read, update, and delete database information.
 
 The following link demonstrates the set up of the code and testing each route in insomnia :
-https://drive.google.com/file/d/1J1EUMdl8kjv5XjOBMlo92Iaj-gaUK-8R/view
-
-
+https://drive.google.com/file/d/1oekiT0n8waWzCaTQ96eALM-eL3rLL_Ao/view
 ## Installation
 
 N/A
