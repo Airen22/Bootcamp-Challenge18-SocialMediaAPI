@@ -25,7 +25,7 @@ module.exports = {
         return User.findOneAndUpdate(
           { username: req.body.username },
           { $addToSet: { thoughts: thought._id } },
-          { new: true }
+          { runValidators: true, new: true }
         );
       })
       .then((user) =>
