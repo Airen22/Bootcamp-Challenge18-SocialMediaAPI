@@ -1,6 +1,7 @@
 const { connect, connection } = require('mongoose');
+require('dotenv').config();
 
-connect('mongodb+srv://erinpeifer:Hoverv!sits0ur@cluster0.2fdaloq.mongodb.net/SocialMediaAPI', {
+connect(`mongodb+srv://erinpeifer:${process.env.MongoURI}.mongodb.net/SocialMediaAPI`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
